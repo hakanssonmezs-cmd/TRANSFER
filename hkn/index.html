@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ercan Transfer Hizmeti</title>
+  <meta name="description" content="Ercan Havalimanı’ndan veya bulunduğunuz konumdan KKTC’nin her bölgesine VIP V-Class transfer hizmeti." />
+  <style>
+    :root{--black:#000;--card:#0f0f10;--muted:#cfc6b6;--gold:#d4af37;--accent:#1e90ff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--black);color:#fff}
+
+    /* Topbar */
+    .topbar{position:fixed;left:0;right:0;top:0;height:68px;background:linear-gradient(180deg,#050505,#000);display:flex;align-items:center;justify-content:space-between;padding:8px 18px;z-index:999;border-bottom:2px solid rgba(212,175,55,0.08)}
+    .topbar .left{display:flex;align-items:center;gap:12px}
+    .logo-sm{width:64px;height:48px;overflow:hidden;border-radius:8px;background:#111;display:flex;align-items:center;justify-content:center}
+    .logo-sm img{height:100%;width:auto;display:block}
+    .brand{font-weight:700;color:var(--gold);letter-spacing:0.4px}
+    .langs{display:flex;gap:6px}
+    .lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:#fff;padding:6px 8px;border-radius:6px;cursor:pointer}
+    .lang-btn.active{border-color:var(--gold);color:var(--gold)}
+    .whatsapp-top{background:#25D366;border:none;color:#04200f;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer}
+
+    .container{max-width:1200px;margin:96px auto 48px;padding:20px}
+    h1{margin:0;font-size:20px;text-align:center;color:var(--gold)}
+    .lead{color:var(--muted);text-align:center;margin-top:8px;margin-bottom:18px}
+
+    /* short form */
+    .short-form{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:12px;border-radius:10px;margin-bottom:18px;border:1px solid rgba(255,255,255,0.03)}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    input,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+    .send-btn{background:linear-gradient(90deg,var(--gold),#c89b2a);color:#000;padding:10px;border:none;border-radius:8px;font-weight:800;cursor:pointer}
+
+    /* price tabs */
+    .tabs{margin-top:6px}
+    .tab-buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+    .tab-btn{background:transparent;border:1px solid rgba(212,175,55,0.06);color:var(--muted);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .tab-btn.active{background:rgba(212,175,55,0.12);color:var(--gold);border-color:rgba(212,175,55,0.6)}
+    .tab-panel{background:#000;padding:12px;border-radius:10px;border:1px solid rgba(212,175,55,0.06)}
+
+    .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .price-box{background:#0a0a0a;border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:8px}
+    .price-box h4{margin:0 0 8px 0;color:var(--gold)}
+    .price-box table{width:100%;border-collapse:collapse}
+    .price-box td{padding:6px 8px;border-bottom:1px dashed rgba(255,255,255,0.03);color:var(--muted);font-size:14px}
+    .price-right{color:var(--gold);font-weight:700;white-space:nowrap}
+
+    footer{margin-top:18px;text-align:center;color:rgba(255,255,255,0.5);font-size:13px}
+
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.price-grid{grid-template-columns:1fr}.logo-sm{width:56px;height:42px}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr}.container{padding:12px}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <div class="logo-sm"><img src="/mnt/data/v_class.avif" alt="logo"/></div>
+      <div class="brand">KKTC V-Class Transfer</div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="langs">
+        <button class="lang-btn active" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
+      <button class="whatsapp-top" id="waTop">WhatsApp</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 id="hero-title">Ercan Transfer Hizmeti</h1>
+    <p class="lead" id="hero-sub">Ercan Havalimanı’ndan veya bulunduğunuz konumdan KKTC’nin her bölgesine VIP V-Class transfer hizmeti. Konforlu, güvenli ve zamanında ulaşım garantisi.</p>
+
+    <div class="short-form">
+      <form id="shortForm" onsubmit="openWhatsAppShort(event)">
+        <div class="grid">
+          <input id="name" type="text" placeholder="Ad Soyad" required>
+          <input id="phone" type="tel" placeholder="Telefon (+90...)" required>
+          <input id="from" type="text" placeholder="Nereden" required>
+          <input id="to" type="text" placeholder="Nereye" required>
+
+          <input id="flightDate" type="date" required>
+          <input id="flightTime" type="time" required>
+          <input id="flightNumber" type="text" placeholder="Uçuş No" required>
+          <button type="submit" class="send-btn">WhatsApp ile Gönder</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Tabs + Price content -->
+    <div class="tabs">
+      <div class="tab-buttons" role="tablist">
+        <button class="tab-btn active" data-tab="girne">Girne</button>
+        <button class="tab-btn" data-tab="lefkosa">Lefkoşa</button>
+        <button class="tab-btn" data-tab="magusa">Mağusa</button>
+        <button class="tab-btn" data-tab="iskele">Yeni İskele</button>
+        <button class="tab-btn" data-tab="bafra">Bafra</button>
+        <button class="tab-btn" data-tab="guzelyurt">Güzelyurt & Lefke</button>
+      </div>
+
+      <div class="tab-panel">
+        <!-- Girne (2 column split) -->
+        <div class="price-grid tab-content" id="girne">
+          <div class="price-box">
+            <h4>Girne - Bölüm A</h4>
+            <table>
+              <tr><td>Acapulco Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Elexus Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Chamada Prestige (Malpas) Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Mc Palace Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>The Olive Tree Hotel</td><td class="price-right">2250 TL</td></tr>
+              <tr><td>Cratos Hotel</td><td class="price-right">2250 TL</td></tr>
+              <tr><td>Oscar Resort Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Vuni Palace Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Altınkaya Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Lord's Palace Hotel</td><td class="price-right">2500 TL</td></tr>
+            </table>
+          </div>
+
+          <div class="price-box">
+            <h4>Girne - Bölüm B</h4>
+            <table>
+              <tr><td>Grand Pasha Hotel Girne</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Pia Bella Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Girne Park Palace</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Girne Öğretmen Evi</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Girne Merkez</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Dome Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Rocks Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>The Arkın Colony Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Life Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Les Ambassadeurs Marina Hotel</td><td class="price-right">2500 TL</td></tr>
+              <tr><td>Diğer Oteller...</td><td class="price-right">2500-4000 TL</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Lefkoşa -->
+        <div class="price-grid tab-content" id="lefkosa" style="display:none">
+          <div class="price-box">
+            <h4>Lefkoşa</h4>
+            <table>
+              <tr><td>Lefkoşa (Genel)</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Merit Lefkoşa Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Concorde Tower Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Grand Pasha Hotel Lefkoşa</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>City Royal Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Saray Otel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Güneş Hotel</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>G-Suites Luxury</td><td class="price-right">2000 TL</td></tr>
+              <tr><td>Sky Roof Hotel</td><td class="price-right">2000 TL</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mağusa -->
+        <div class="price-grid tab-content" id="magusa" style="display:none">
+          <div class="price-box">
+            <h4>Gazimağusa</h4>
+            <table>
+              <tr><td>Gazimağusa (Genel)</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Salamis Bay Conti Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Arkın Palm Beach Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Oscar Park Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Mağusa Ordu Evi</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Mimoza Beach Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Grand Saphire City Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Port View Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Premium Inn Hotel</td><td class="price-right">3000 TL</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- İskele -->
+        <div class="price-grid tab-content" id="iskele" style="display:none">
+          <div class="price-box">
+            <h4>Yeni İskele</h4>
+            <table>
+              <tr><td>Yeni İskele (Genel)</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Arkın İskele Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Merit Royal Gardens Resort Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Courtyard Long Beach Hotel</td><td class="price-right">3000 TL</td></tr>
+              <tr><td>Crystal Rocks Bungalows</td><td class="price-right">3000 TL</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bafra -->
+        <div class="price-grid tab-content" id="bafra" style="display:none">
+          <div class="price-box">
+            <h4>Bafra</h4>
+            <table>
+              <tr><td>Bafra (Genel)</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>Kaya Artemis Hotel</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>Nuh'un Gemisi Hotel</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>Limak Cyprus Deluxe Hotel</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>Concorde Luxury Resort Hotel</td><td class="price-right">3500 TL</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Güzelyurt & Lefke -->
+        <div class="price-grid tab-content" id="guzelyurt" style="display:none">
+          <div class="price-box">
+            <h4>Güzelyurt & Lefke</h4>
+            <table>
+              <tr><td>Güzelyurt (Genel)</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>ODTÜ Kampüsü</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>KSTU Kampüsü</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>Hanna Koumi Boutique Hotel</td><td class="price-right">3500 TL</td></tr>
+              <tr><td>Lefke (Genel)</td><td class="price-right">4000 TL</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p style="margin-top:18px;color:var(--muted);text-align:center">Ercan Havalimanı’ndan veya bulunduğunuz konumdan KKTC’nin her bölgesine VIP V-Class transfer hizmeti. Konforlu, güvenli ve zamanında ulaşım garantisi.</p>
+
+    <footer>
+      <p>📞 <a href="tel:+905338555500" style="color:var(--gold);text-decoration:none">+90 533 855 5500</a> • ✉️ <a href="mailto:hakan.ssonmezs@gmail.com" style="color:var(--gold);text-decoration:none">hakan.ssonmezs@gmail.com</a></p>
+      <p style="color:rgba(255,255,255,0.45)">© <span id="year"></span> KKTC V-Class Transfer — Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+
+  <script>
+    // language data (only placeholders and headings handled)
+    const langs = {
+      tr:{title:'Ercan Transfer Hizmeti', sub:'Ercan Havalimanı’ndan veya bulunduğunuz konumdan KKTC’nin her bölgesine VIP V-Class transfer hizmeti. Konforlu, güvenli ve zamanında ulaşım garantisi.', send:'WhatsApp ile Gönder', placeholders:{name:'Ad Soyad',phone:'Telefon (+90...)',from:'Nereden',to:'Nereye',date:'Uçuş Tarihi',time:'Uçuş Saati',flight:'Uçuş No'}},
+      en:{title:'Ercan Transfer Service', sub:'VIP V-Class transfers from or to Ercan Airport to any location in Northern Cyprus. Comfortable, safe and on-time service.', send:'Send via WhatsApp', placeholders:{name:'Full name',phone:'Phone (+90...)',from:'From',to:'To',date:'Flight Date',time:'Flight Time',flight:'Flight No'}},
+      ru:{title:'Трансфер Эрджан', sub:'VIP трансфер V-Class из/в аэропорт Эрджан в любой регион Северного Кипра. Комфортно, безопасно и вовремя.', send:'Отправить в WhatsApp', placeholders:{name:'ФИО',phone:'Телефон (+90...)',from:'Откуда',to:'Куда',date:'Дата рейса',time:'Время рейса',flight:'Номер рейса'}}
+    };
+
+    function setLang(l){
+      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lang')===l));
+      const t = langs[l]||langs.tr;
+      document.getElementById('hero-title').textContent = t.title;
+      document.getElementById('hero-sub').textContent = t.sub;
+      document.getElementById('name').placeholder = t.placeholders.name;
+      document.getElementById('phone').placeholder = t.placeholders.phone;
+      document.getElementById('from').placeholder = t.placeholders.from;
+      document.getElementById('to').placeholder = t.placeholders.to;
+      document.getElementById('flightDate').setAttribute('aria-label', t.placeholders.date);
+      document.getElementById('flightTime').setAttribute('aria-label', t.placeholders.time);
+      document.getElementById('flightNumber').placeholder = t.placeholders.flight;
+      document.querySelector('.send-btn').textContent = t.send;
+    }
+    document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.getAttribute('data-lang'))));
+    setLang('tr');
+
+    // tabs
+    document.querySelectorAll('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.getAttribute('data-tab');
+        document.querySelectorAll('.tab-content').forEach(c=>c.style.display='none');
+        document.getElementById(tab).style.display='grid';
+        window.scrollTo({top:150,behavior:'smooth'});
+      });
+    });
+
+    // set initial visible
+    document.getElementById('girne').style.display='grid';
+
+    // whatsapp builder
+    function normalizePhone(v){
+      if(!v) return '';
+      let s = v.replace(/[^0-9+]/g,'');
+      if(s.startsWith('0')) s = '+90'+s.replace(/^0+/,'');
+      if(s.startsWith('90')) s = '+'+s;
+      if(!s.startsWith('+90') && s.length===10) s = '+90'+s;
+      return s;
+    }
+
+    const BUSINESS = '90533855500';
+    function buildMessage(lang){
+      const t = langs[lang]||langs.tr;
+      const name = (document.getElementById('name').value||'').trim();
+      const phone = normalizePhone(document.getElementById('phone').value||'');
+      const from = (document.getElementById('from').value||'').trim();
+      const to = (document.getElementById('to').value||'').trim();
+      const date = document.getElementById('flightDate').value||'';
+      const time = document.getElementById('flightTime').value||'';
+      const flight = (document.getElementById('flightNumber').value||'').trim();
+
+      if(lang==='en'){
+        return `Hello, I would like to book a transfer.%0AFull name: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AFrom: ${encodeURIComponent(from)}%0ATo: ${encodeURIComponent(to)}%0AFlight date: ${encodeURIComponent(date)}%0AFlight time: ${encodeURIComponent(time)}%0AFlight No: ${encodeURIComponent(flight)}`;
+      } else if(lang==='ru'){
+        return `Здравствуйте, я хочу заказать трансфер.%0AФИО: ${encodeURIComponent(name)}%0AТелефон: ${encodeURIComponent(phone)}%0AОткуда: ${encodeURIComponent(from)}%0AКуда: ${encodeURIComponent(to)}%0AДата рейса: ${encodeURIComponent(date)}%0AВремя рейса: ${encodeURIComponent(time)}%0AНомер рейса: ${encodeURIComponent(flight)}`;
+      }
+      return `Merhaba, rezervasyon yapmak istiyorum.%0AAd Soyad: ${encodeURIComponent(name)}%0ATelefon: ${encodeURIComponent(phone)}%0ANereden: ${encodeURIComponent(from)}%0ANereye: ${encodeURIComponent(to)}%0AUçuş Tarihi: ${encodeURIComponent(date)}%0AUçuş Saati: ${encodeURIComponent(time)}%0AUçuş Numarası: ${encodeURIComponent(flight)}`;
+    }
+
+    document.getElementById('shortForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const lang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang')||'tr';
+      const url = 'https://wa.me/'+BUSINESS+'?text='+buildMessage(lang);
+      window.open(url,'_blank');
+    });
+
+    document.getElementById('waTop').addEventListener('click',function(){
+      const lang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang')||'tr';
+      const url = 'https://wa.me/'+BUSINESS+'?text='+buildMessage(lang);
+      window.open(url,'_blank');
+    });
+
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
